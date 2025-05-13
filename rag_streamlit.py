@@ -241,6 +241,10 @@ if user_input:
                 model_provider="openai",
                 api_key=os.getenv("OPENAI_API_KEY")
             )
+            # Ensure db is not None before proceeding
+            if db is None:
+                st.error("No valid content found in the provided sources. Please upload a PDF or use a YouTube video with a transcript.")
+                st.stop()
             system_text = (
                 "You are a context-aware assistant.\n"
                 "Use the provided documents to answer user queries.\n"
