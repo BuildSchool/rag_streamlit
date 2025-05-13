@@ -1,0 +1,3 @@
+.env
+# Do not ignore .streamlit/config.toml so theme is applied
+.streamlit/secrets.toml
