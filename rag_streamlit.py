@@ -203,7 +203,7 @@ if user_input:
                             YoutubeLoader.from_youtube_url(youtube_url, add_video_info=False)
                         )
                     except Exception as e:
-                        st.error(f"\u274c Could not process YouTube video: {str(e)}")
+                        st.warning("YouTube is preventing transcript access for this video. Please try another video or upload a PDF.")
                         loaders = []
                 else:
                     st.error("\u274c Invalid YouTube URL")
@@ -215,7 +215,7 @@ if user_input:
                     try:
                         docs.extend(loader.load())
                     except Exception as e:
-                        st.error(f"\u274c Could not fetch transcript for the YouTube video. It may not be available for Shorts or this video.\nError: {str(e)}")
+                        st.warning("YouTube is preventing transcript access for this video. Please try another video or upload a PDF.")
                 if not docs:
                     st.info("No transcript could be loaded from the provided YouTube link. Only PDF content will be used.")
                 else:
