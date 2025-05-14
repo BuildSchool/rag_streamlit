@@ -346,10 +346,12 @@ if extract_clicked:
                     st.error(f"YouTube transcript could not be loaded: {e}")
 
 # --- Transcript Preview ---
-if youtube_transcript_preview:
+formatted_transcript = ""
+if youtube_transcript_preview and isinstance(youtube_transcript_preview, str) and youtube_transcript_preview.strip():
+    formatted_transcript = youtube_transcript_preview
+    transcript_html = formatted_transcript.replace('\n\n', '<br><br>').replace('\n', '<br>')
     st.markdown("<div style='margin-top:-2.5rem'></div>", unsafe_allow_html=True)
     st.subheader("YouTube Transcript Preview")
-    transcript_html = formatted_transcript.replace('\n\n', '<br><br>').replace('\n', '<br>')
     st.markdown(
         "<div style='border:1.5px solid #6C63FF; border-radius:12px; padding:1em; background:#f8fafc; font-size:1.08em; line-height:1.7;'>" + transcript_html + "</div>",
         unsafe_allow_html=True
@@ -372,6 +374,8 @@ if youtube_transcript_preview:
             file_name="youtube_transcript.pdf",
             mime="application/pdf"
         )
+else:
+    st.info("No transcript available to display.")
 
 # --- Chat History Rendering ---
 if "history" not in st.session_state:
