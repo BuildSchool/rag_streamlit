@@ -7,3 +7,6 @@ openai
 faiss-cpu
 pypdf
 youtube-transcript-api
+apify-client
+requests
+fpdf
